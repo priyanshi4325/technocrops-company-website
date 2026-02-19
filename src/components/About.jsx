@@ -33,7 +33,7 @@ function About() {
               leading-snug
             ">
               Driving Digital Innovation &
-              Expert Talent Solutions
+              Expert Talent Solutions with expertise
             </h2>
 
             <p className="text-gray-600 mb-5 leading-relaxed">
