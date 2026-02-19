@@ -1,4 +1,37 @@
+import { useState } from "react";
 function ContactCTA() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await fetch(
+      "http://127.0.0.1:8000/api/contact/submit/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    const data = await res.json();
+
+    alert(data.message);
+  };
+
   return (
     <section className="
       bg-gradient-to-b
@@ -87,7 +120,8 @@ function ContactCTA() {
             Send us a Message
           </h3>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
+
 
             {/* Name */}
             <div>
@@ -106,6 +140,8 @@ function ContactCTA() {
                   focus:border-cyan-400
                   transition
                 "
+                name="name"
+                onChange={handleChange}
               />
             </div>
 
@@ -125,6 +161,8 @@ function ContactCTA() {
                   focus:outline-none
                   focus:border-cyan-400
                 "
+                name="email"
+  onChange={handleChange}
               />
             </div>
 
@@ -144,6 +182,8 @@ function ContactCTA() {
                   focus:outline-none
                   focus:border-cyan-400
                 "
+                name="phone"
+  onChange={handleChange}
               />
             </div>
 
@@ -163,6 +203,8 @@ function ContactCTA() {
                   focus:outline-none
                   focus:border-cyan-400
                 "
+                name="message"
+  onChange={handleChange}
               />
             </div>
 
