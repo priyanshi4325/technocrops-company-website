@@ -2,9 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { ThemeProvider } from './ThemeContext';
 
 function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
 
       <Navbar />
@@ -16,6 +18,7 @@ function App() {
       <Footer />
 
     </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
