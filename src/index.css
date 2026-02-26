@@ -15,3 +15,58 @@
 section {
   scroll-margin-top: 100px;
 }
+/* --- GOOGLE TRANSLATE GHOST UI --- */
+
+/* 1. The Container Logic */
+/* This makes the invisible Google widget sit exactly on top of your Globe icon */
+.google-translate-ghost {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  opacity: 0 !important;
+  z-index: 20;
+  cursor: pointer;
+}
+
+/* 2. Expanding the Click Area */
+/* Google's script creates a simple menu; we force it to fill the button's dimensions */
+.goog-te-gadget-simple, 
+.goog-te-menu-value, 
+.goog-te-menu-value span {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: none !important;
+  background: transparent !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. Global Cleanup */
+/* Hides all Google-injected branding, tooltips, and banners */
+.goog-te-gadget-icon, 
+.goog-logo-link, 
+.goog-te-banner-frame, 
+#goog-gt-tt, 
+.goog-te-balloon-frame,
+.skiptranslate > iframe {
+  display: none !important;
+}
+
+/* 4. Fix Layout Shifts */
+/* Google often adds 40px padding to the top of the body; this resets it */
+body { 
+  top: 0px !important; 
+  position: static !important; 
+}
+
+/* Optional: Styles the actual dropdown menu that appears after clicking */
+.goog-te-menu-frame {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}

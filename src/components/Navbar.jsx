@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { useTheme } from "../ThemeContext"; // 1. Import the hook
-import { HiMoon, HiSun } from "react-icons/hi"; // 2. Icons for the toggle
+import { useTheme } from "../ThemeContext"; 
+import { HiMoon, HiSun } from "react-icons/hi"; 
+import { Globe } from "lucide-react";
 
 function Navbar() {
-  const { isDark, toggleTheme } = useTheme(); // 3. Use the hook
+  const { isDark, toggleTheme } = useTheme(); 
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
@@ -16,6 +17,7 @@ function Navbar() {
   ];
 
   useEffect(() => {
+    // 1. Intersection Observer for Scroll Spy
     const sections = document.querySelectorAll("section[id]");
     const observer = new IntersectionObserver(
       (entries) => {
@@ -26,6 +28,24 @@ function Navbar() {
       { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
     );
     sections.forEach((section) => observer.observe(section));
+
+    // 2. Google Translate Initialization
+    window.googleTranslateElementInit = () => {
+      new window.google.translate.TranslateElement(
+        {
+          pageLanguage: 'en',
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false,
+        },
+        'google_translate_element'
+      );
+    };
+
+    // Manually trigger if script loaded before component mount
+    if (window.google && window.google.translate) {
+      window.googleTranslateElementInit();
+    }
+
     return () => observer.disconnect();
   }, []);
 
@@ -38,33 +58,23 @@ function Navbar() {
   };
 
   return (
-    <nav className="
-      fixed w-full top-0 z-50 transition-all duration-300
-      /* Light Mode */ bg-white/90 text-slate-900 border-b border-gray-200
-      /* Dark Mode */ dark:bg-[#08142B]/80 dark:text-white dark:border-white/10
-      backdrop-blur-md
-    ">
+    <nav className="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 text-slate-900 border-b border-gray-200 dark:bg-[#08142B]/80 dark:text-white dark:border-white/10 backdrop-blur-md">
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
         
         {/* Logo */}
-        <h1
-          onClick={() => scrollToSection("home")}
-          className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent cursor-pointer"
-        >
-          Technocorps
+        <h1 onClick={() => scrollToSection("home")} className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent cursor-pointer">
+          TechnoCrops
         </h1>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-8">
-          <div className="flex space-x-10 font-medium">
+        <div className="hidden md:flex items-center space-x-6">
+          <div className="flex space-x-8 font-medium">
             {navLinks.map((link) => (
               <button
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
                 className={`transition-colors duration-300 relative py-1 ${
-                  activeSection === link.id 
-                    ? "text-cyan-500 dark:text-cyan-400" 
-                    : "text-gray-600 dark:text-gray-300 hover:text-cyan-400"
+                  activeSection === link.id ? "text-cyan-500" : "text-gray-600 dark:text-gray-300 hover:text-cyan-400"
                 }`}
               >
                 {link.label}
@@ -73,29 +83,33 @@ function Navbar() {
             ))}
           </div>
 
-          {/* 4. THE THEME TOGGLE BUTTON */}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-xl bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-yellow-400 hover:scale-110 transition-all"
-            aria-label="Toggle Theme"
-          >
+          {/* DESKTOP TRANSLATE - Optimized Container */}
+          <div className={`
+  relative flex items-center justify-center w-10 h-10 rounded-xl border transition-all cursor-pointer overflow-hidden
+  ${isDark ? "bg-white/5 border-white/10 hover:bg-white/10" : "bg-white border-gray-200 shadow-sm hover:bg-gray-50"}
+`}>
+  {/* 1. The Visible Icon */}
+  <Globe size={20} className="text-gray-500 dark:text-gray-400 z-0" />
+  
+  {/* 2. The Invisible Google Widget (stretched to fill the box) */}
+  <div 
+    id="google_translate_element" 
+    className="absolute inset-0 z-10 opacity-0 cursor-pointer scale-[3] origin-center"
+  />
+</div>
+
+          {/* Theme Toggle */}
+          <button onClick={toggleTheme} className="p-2 rounded-xl bg-gray-100 dark:bg-white/10 text-gray-600 dark:text-yellow-400 hover:scale-110 transition-all">
             {isDark ? <HiSun size={22} /> : <HiMoon size={22} />}
           </button>
 
-          {/* Desktop CTA */}
-          <button
-            onClick={() => scrollToSection("contact")}
-            className="bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-2 rounded-lg shadow-lg hover:shadow-cyan-500/40 transition text-white"
-          >
+          <button onClick={() => scrollToSection("contact")} className="bg-gradient-to-r from-blue-600 to-cyan-500 px-5 py-2 rounded-lg text-white font-medium">
             Get Quote
           </button>
         </div>
 
         {/* Hamburger */}
-        <button 
-          onClick={() => setMenuOpen(!menuOpen)} 
-          className="md:hidden text-gray-800 dark:text-white text-2xl"
-        >
+        <button onClick={() => setMenuOpen(!menuOpen)} className="md:hidden text-gray-800 dark:text-white text-2xl">
           {menuOpen ? "✕" : "☰"}
         </button>
       </div>
@@ -103,31 +117,33 @@ function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden bg-white dark:bg-[#08142B] border-t border-gray-200 dark:border-white/10">
-          <div className="flex flex-col text-center space-y-6 py-10 text-gray-600 dark:text-gray-300 font-medium">
+          <div className="flex flex-col text-center space-y-6 py-10 px-6">
             {navLinks.map((link) => (
-              <button
-                key={link.id}
-                onClick={() => scrollToSection(link.id)}
-                className={`transition-colors ${activeSection === link.id ? "text-cyan-500 dark:text-cyan-400 font-bold" : ""}`}
-              >
+              <button key={link.id} onClick={() => scrollToSection(link.id)} className={`transition-colors ${activeSection === link.id ? "text-cyan-500 font-bold" : ""}`}>
                 {link.label}
               </button>
             ))}
             
-            {/* Mobile Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="flex items-center justify-center space-x-2 mx-auto text-sm uppercase tracking-widest"
-            >
-              <span>{isDark ? "Switch to Light" : "Switch to Dark"}</span>
-              {isDark ? <HiSun className="text-yellow-400" /> : <HiMoon />}
-            </button>
+            {/* MOBILE TRANSLATE */}
+<div className={`
+  relative flex items-center justify-center w-full max-w-[200px] h-12 mx-auto rounded-xl border transition-all
+  ${isDark ? "bg-white/5 border-white/10" : "bg-gray-100 border-gray-200"}
+`}>
+  <div className="flex items-center gap-2">
+    <Globe size={20} className="text-gray-500" />
+    <span className="text-sm font-medium">Change Language</span>
+  </div>
+  
+  {/* NOTE: Because Google only renders ONE widget, we keep the ID on the desktop.
+      For mobile, it's best to let the user use the desktop one or use a 
+      separate initialization. However, if you want it here too:
+  */}
+  <div id="google_translate_element" className="google-translate-ghost" />
+</div>
 
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="bg-gradient-to-r from-blue-600 to-cyan-500 px-6 py-3 rounded-lg mx-auto w-fit text-white"
-            >
-              Get Quote
+            <button onClick={toggleTheme} className="flex items-center justify-center space-x-2 mx-auto text-sm p-3 rounded-lg bg-gray-100 dark:bg-white/5 w-full max-w-[200px]">
+              <span>{isDark ? "Light Mode" : "Dark Mode"}</span>
+              {isDark ? <HiSun className="text-yellow-400" /> : <HiMoon />}
             </button>
           </div>
         </div>
