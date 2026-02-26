@@ -8,6 +8,8 @@ import BlockchainPage from "./pages/BlockchainPage";
 import TestingPage from "./pages/TestingPage";
 import StaffAugPage from "./pages/StaffAugPage";
 import AIPage from "./pages/AIPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
         <Route path="/services/software-testing" element={<TestingPage />} />
         <Route path="/services/staff-augmentation" element={<StaffAugPage />} />
         <Route path="/services/ai-integrations" element={<AIPage />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
 
       <Footer />

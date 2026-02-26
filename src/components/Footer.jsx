@@ -14,20 +14,20 @@ function Footer() {
       pt-20 pb-10
     ">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* TOP GRID */}
         <div className="grid md:grid-cols-4 gap-12 mb-16">
-          
+
           {/* Column 1 — Company */}
           <div className="col-span-1 md:col-span-1">
             <h3 className="text-2xl font-bold mb-4 tracking-tight">
               Techno<span className="text-blue-600 dark:text-cyan-400">Crops</span>
             </h3>
             <p className="text-slate-500 dark:text-gray-400 text-sm leading-relaxed mb-6">
-              We build digital products, automation systems, and scalable platforms 
+              We build digital products, automation systems, and scalable platforms
               that help businesses grow faster and operate smarter.
             </p>
-            
+
             {/* Social Icons */}
             <div className="flex gap-4">
               {[
@@ -36,9 +36,9 @@ function Footer() {
                 { icon: <FaFacebookF />, color: "hover:bg-blue-800" },
                 { icon: <FaInstagram />, color: "hover:bg-pink-600" }
               ].map((social, idx) => (
-                <a 
-                  key={idx} 
-                  href="#" 
+                <a
+                  key={idx}
+                  href="#"
                   className={`
                     w-10 h-10 rounded-full flex items-center justify-center 
                     bg-slate-200 dark:bg-white/5 text-slate-600 dark:text-gray-400 
@@ -51,72 +51,72 @@ function Footer() {
             </div>
           </div>
 
-          
+
           {/* Column 2 — Services */}
-<div>
-  <h4 className="font-bold mb-6 text-slate-900 dark:text-white">Services</h4>
-  <ul className="space-y-4 text-slate-500 dark:text-gray-400 text-sm">
-    {["Web App Development", "Blockchain Solutions", "Software Testing", "Staff Augmentation", "AI Integrations"].map((item) => {
-      
-      // 1. Define your routes in a simple mapping object
-      const routes = {
-        "Web App Development": "/services/web-app-development",
-        "Blockchain Solutions": "/services/blockchain-solutions",
-        "Software Testing": "/services/software-testing",
-        "Staff Augmentation": "/services/staff-augmentation",
-        "AI Integrations": "/services/ai-integrations",
-      };
+          <div>
+            <h4 className="font-bold mb-6 text-slate-900 dark:text-white">Services</h4>
+            <ul className="space-y-4 text-slate-500 dark:text-gray-400 text-sm">
+              {["Web App Development", "Blockchain Solutions", "Software Testing", "Staff Augmentation", "AI Integrations"].map((item) => {
 
-      // 2. Determine the path, default to "#" if not built yet
-      const path = routes[item] || "#";
+                // 1. Define your routes in a simple mapping object
+                const routes = {
+                  "Web App Development": "/services/web-app-development",
+                  "Blockchain Solutions": "/services/blockchain-solutions",
+                  "Software Testing": "/services/software-testing",
+                  "Staff Augmentation": "/services/staff-augmentation",
+                  "AI Integrations": "/services/ai-integrations",
+                };
 
-      return (
-        <li key={item}>
-          <Link
-            to={path}
-            className="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-300 flex items-center group"
-            onClick={() => window.scrollTo(0, 0)}
-          >
-            <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 mr-2 text-cyan-400">
-              →
-            </span>
-            {item}
-          </Link>
-        </li>
-      );
-    })}
-  </ul>
-</div>
+                // 2. Determine the path, default to "#" if not built yet
+                const path = routes[item] || "#";
+
+                return (
+                  <li key={item}>
+                    <Link
+                      to={path}
+                      className="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-300 flex items-center group"
+                      onClick={() => window.scrollTo(0, 0)}
+                    >
+                      <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 mr-2 text-cyan-400">
+                        →
+                      </span>
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           {/* Column 3 — Quick Links */}
           <div>
-  <h4 className="font-bold mb-6 text-slate-900 dark:text-white">Quick Links</h4>
-  <ul className="space-y-4 text-slate-500 dark:text-gray-400 text-sm">
-    {["About Us", "Services", "Contact"].map((item) => {
-      // Map the text to your section IDs on the Home page
-      const sectionMap = {
-        "About Us": "about",
-        "Services": "services",
-        "Contact": "contact",       
-      };
+            <h4 className="font-bold mb-6 text-slate-900 dark:text-white">Quick Links</h4>
+            <ul className="space-y-4 text-slate-500 dark:text-gray-400 text-sm">
+              {["About Us", "Services", "Contact"].map((item) => {
+                // Map the text to your section IDs on the Home page
+                const sectionMap = {
+                  "About Us": "about",
+                  "Services": "services",
+                  "Contact": "contact",
+                };
 
-      return (
-        <li key={item}>
-          <HashLink
-            smooth
-            to={`/#${sectionMap[item]}`}
-            className="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-300 flex items-center group"
-          >
-            <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 mr-2 text-cyan-400">
-              →
-            </span>
-            {item}
-          </HashLink>
-        </li>
-      );
-    })}
-  </ul>
-</div>
+                return (
+                  <li key={item}>
+                    <HashLink
+                      smooth
+                      to={`/#${sectionMap[item]}`}
+                      className="hover:text-blue-600 dark:hover:text-cyan-400 transition-colors duration-300 flex items-center group"
+                    >
+                      <span className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300 mr-2 text-cyan-400">
+                        →
+                      </span>
+                      {item}
+                    </HashLink>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           {/* Column 4 — Contact */}
           <div>
@@ -143,11 +143,25 @@ function Footer() {
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-white/10 to-transparent mb-8"></div>
 
         {/* BOTTOM BAR */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-slate-400 dark:text-gray-500 text-xs gap-4">
+        <div className="mt-16 pt-8 border-t border-slate-200 dark:border-white/10 flex flex-col md:flex-row justify-between items-center text-slate-400 dark:text-gray-500 text-xs gap-4">
           <p>© {currentYear} TechnoCrops. All rights reserved.</p>
+
           <div className="flex gap-8">
-            <span className="hover:text-blue-600 dark:hover:text-white cursor-pointer transition-colors">Privacy Policy</span>
-            <span className="hover:text-blue-600 dark:hover:text-white cursor-pointer transition-colors">Terms & Conditions</span>
+            <Link
+              to="/privacy-policy"
+              className="hover:text-blue-600 dark:hover:text-white transition-colors duration-300"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              Privacy Policy
+            </Link>
+
+            <Link
+              to="/terms-and-conditions"
+              className="hover:text-blue-600 dark:hover:text-white transition-colors duration-300"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              Terms & Conditions
+            </Link>
           </div>
         </div>
 
