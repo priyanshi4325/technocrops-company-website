@@ -61,7 +61,7 @@ function About() {
               supporting startups, enterprises, and growing businesses.
             </p>
 
-            <button className="
+            {/* <button className="
               bg-gradient-to-r
               from-blue-600
               to-cyan-500
@@ -73,7 +73,7 @@ function About() {
               transition
             ">
               Learn More
-            </button>
+            </button> */}
 
           </div>
         </Reveal>

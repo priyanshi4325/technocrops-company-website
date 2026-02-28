@@ -1,10 +1,14 @@
 import os
+import pymysql
+pymysql.install_as_MySQLdb()
 from dotenv import load_dotenv
+from pathlib import Path
 
 load_dotenv()
 
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
+cert_path = os.path.join(BASE_DIR, 'isrgrootx1.pem')
 SECRET_KEY = 'django-insecure-wmb56+j=sf_uovma%trc44g86$54cd&sq-ix1k22o-a51v)3wd'
 DEBUG = True
 ALLOWED_HOSTS = []
@@ -50,10 +54,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+print(f"--- DATABASE IS LOOKING FOR CERT AT: {cert_path} ---")
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'test',
+        'USER': '2MXvw1RnZMRyQAy.root',
+        'PASSWORD': 'xZU0GEctDL0nSvyG',
+        'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+        'PORT': '4000',
+        'OPTIONS': {
+            'ssl': {
+                'ca': cert_path,
+            },
+            'charset': 'utf8mb4',
+        },
     }
 }
 
