@@ -28,7 +28,7 @@ function ContactCTA() {
     setError("");
 
     try {
-      const res = await fetch("https://technocrops.onrender.com/contact/", {
+      const res = await fetch("https://technocrops.onrender.com/api/contact/submit/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
