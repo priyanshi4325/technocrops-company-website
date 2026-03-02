@@ -8,7 +8,17 @@ load_dotenv()
 
 from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
-cert_path = os.path.join(BASE_DIR, 'isrgrootx1.pem')
+
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+if RENDER_EXTERNAL_HOSTNAME:
+    # Use the path to the Secret File on Render
+    cert_path = '/etc/secrets/isrgrootx1.pem'
+else:
+    # Use your local path for development
+    cert_path = os.path.join(BASE_DIR, 'isrgrootx1.pem')
+
+# cert_path = os.path.join(BASE_DIR, 'isrgrootx1.pem')
 SECRET_KEY = 'django-insecure-wmb56+j=sf_uovma%trc44g86$54cd&sq-ix1k22o-a51v)3wd'
 DEBUG = True
 ALLOWED_HOSTS = ['*']
