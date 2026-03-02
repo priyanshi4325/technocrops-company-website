@@ -1,9 +1,0 @@
-[build]
-  base = "."
-  publish = "dist"  # Or "build" depending on your React setup
-  command = "npm run build"
-
-[build.environment]
-  PYTHON_VERSION = "3.10" # This sometimes stops Netlify from auto-detecting
-  # OR simply:
-  NETLIFY_SKIP_PYTHON_INSTALL = "true"

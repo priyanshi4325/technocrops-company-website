@@ -62,8 +62,9 @@ Message:
             )
 
         except Exception as e:
-            print("EMAIL ERROR:", str(e))
-            return JsonResponse({"error": "Server Error. Please try again later."}, status=500)
+            import traceback
+            print(traceback.format_exc()) # Prints the full error "stack" in Render logs
+            return JsonResponse({"error": f"Django Error: {str(e)}"}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
 
