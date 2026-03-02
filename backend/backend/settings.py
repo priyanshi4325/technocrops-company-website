@@ -75,11 +75,9 @@ DATABASES = {
         'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
         'PORT': '4000',
         'OPTIONS': {
-            'ssl': {
-                'ca': cert_path,
-            },
+            'ssl_ca': cert_path,     # Changed from 'ssl': {'ca': ...}
             'use_pure': True,
-            'charset': 'utf8mb4',
+            'charset': 'utf8mb4'
         },
     }
 }
