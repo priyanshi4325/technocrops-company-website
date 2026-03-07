@@ -1,6 +1,4 @@
 import os
-# import pymysql
-# pymysql.install_as_MySQLdb()
 from dotenv import load_dotenv
 from pathlib import Path
 
@@ -20,7 +18,7 @@ else:
 
 # cert_path = os.path.join(BASE_DIR, 'isrgrootx1.pem')
 SECRET_KEY = 'django-insecure-wmb56+j=sf_uovma%trc44g86$54cd&sq-ix1k22o-a51v)3wd'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [

@@ -41,20 +41,20 @@ def contact_submit(request):
             )
         
             # ✨ Send email to company
-#             send_mail(
-#                 subject=f"New Contact Form Submission from {contact.name}",
-#                 message=f"""
-# Name: {contact.name}
-# Email: {contact.email}
-# Phone: {contact.phone}
+            send_mail(
+                subject=f"New Contact Form Submission from {contact.name}",
+                message=f"""
+Name: {contact.name}
+Email: {contact.email}
+Phone: {contact.phone}
 
-# Message:
-# {contact.message}
-# """,
-#                 from_email=settings.DEFAULT_FROM_EMAIL,
-#                 recipient_list=[settings.EMAIL_HOST_USER],  
-#                 fail_silently=False,
-#             )
+Message:
+{contact.message}
+""",
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.EMAIL_HOST_USER],  
+                fail_silently=False,
+            )
 
             return JsonResponse(
                 {"message": "Thanks! We'll contact you within 24 hours."},
