@@ -113,7 +113,7 @@ USE_TZ = True
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://technocorps-company.netlify.app/",
+    "https://technocorps-company.netlify.app",
 ]
 
 
