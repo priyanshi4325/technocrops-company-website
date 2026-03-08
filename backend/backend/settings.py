@@ -69,9 +69,9 @@ print(f"--- DATABASE IS LOOKING FOR CERT AT: {cert_path} ---")
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'test',
-        'USER': '2MXvw1RnZMRyQAy.root',
-        'PASSWORD': 'xZU0GEctDL0nSvyG',
+        'NAME': 'technocrops_db',
+        'USER': 'Sytt3idez6FkoT9.root',
+        'PASSWORD': 'pTIyNZlniDb4ZlNF',
         'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
         'PORT': '4000',
         'OPTIONS': {
