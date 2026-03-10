@@ -42,21 +42,21 @@ def contact_submit(request):
             )
         
             # 2. Try to Send Email (Shielded from crashing the whole request)
-            try:
-                send_mail(
-                    subject=f"New Contact Form Submission from {contact.name}",
-                    message=f"Name: {contact.name}\nEmail: {contact.email}\nPhone: {contact.phone}\n\nMessage:\n{contact.message}",
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[settings.EMAIL_HOST_USER],  
-                    fail_silently=False, 
-                    # Note: Django's default SMTP backend doesn't support a 'timeout' 
-                    # parameter directly in send_mail, but fail_silently=False 
-                    # combined with this try/except block will catch the timeout.
-                )
-            except Exception as email_error:
-                # We log the error so you can see it in Render, 
-                # but we DON'T stop the user's success message.
-                print(f"CRITICAL: Email failed to send, but data was saved. Error: {email_error}")
+            # try:
+            #     send_mail(
+            #         subject=f"New Contact Form Submission from {contact.name}",
+            #         message=f"Name: {contact.name}\nEmail: {contact.email}\nPhone: {contact.phone}\n\nMessage:\n{contact.message}",
+            #         from_email=settings.DEFAULT_FROM_EMAIL,
+            #         recipient_list=[settings.EMAIL_HOST_USER],  
+            #         fail_silently=False, 
+            #         # Note: Django's default SMTP backend doesn't support a 'timeout' 
+            #         # parameter directly in send_mail, but fail_silently=False 
+            #         # combined with this try/except block will catch the timeout.
+            #     )
+            # except Exception as email_error:
+            #     # We log the error so you can see it in Render, 
+            #     # but we DON'T stop the user's success message.
+            #     print(f"CRITICAL: Email failed to send, but data was saved. Error: {email_error}")
 
             # 3. Always return success if we reached this point
             return JsonResponse(

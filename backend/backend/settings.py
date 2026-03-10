@@ -71,7 +71,7 @@ DATABASES = {
         'ENGINE': 'mysql.connector.django',
         'NAME': 'technocrops_db',
         'USER': 'Sytt3idez6FkoT9.root',
-        'PASSWORD': 'pTIyNZlniDb4ZlNF',
+        'PASSWORD': os.getenv("DB_PASSWORD"),
         'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
         'PORT': '4000',
         'OPTIONS': {
