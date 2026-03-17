@@ -74,7 +74,7 @@ function Hero() {
             that help you reach more customers,
             save time, and scale your business with ease.
           </motion.p>
-
+{/* 
           <motion.button
             variants={{
               hidden: { opacity: 0, y: 40 },
@@ -89,7 +89,7 @@ function Hero() {
             "
           >
             Explore Services
-          </motion.button>
+          </motion.button> */}
         </motion.div>
 
         {/* Right Visual */}
