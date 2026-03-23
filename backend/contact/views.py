@@ -11,6 +11,8 @@ from django.conf import settings
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 
+from django.http import HttpResponse;
+
 @csrf_exempt
 def contact_submit(request):
     if request.method == "POST":
@@ -53,4 +55,7 @@ def contact_submit(request):
             return JsonResponse({"error": "An internal server error occurred."}, status=500)
 
     return JsonResponse({"error": "Invalid request"}, status=400)
+
+def health(request):
+    return HttpResponse("Server is awake ✅")
 
